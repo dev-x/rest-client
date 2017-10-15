@@ -1,0 +1,24 @@
+<script src="index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+<script>
+    console.log(jQuery)
+</script>    
+<script src="client-jquery.js"></script>
+<script>
+    console.log(makeRequest)
+    restClient.config({
+        baseUrl: 'http://somedomain',
+        headers: {
+            'Accept': 'application/json',
+    //		'Authorization': token ? `Bearer ${token}` : undefined,
+            'Content-Type': 'application/json'
+        },
+        requestMethod: makeRequest
+    });
+    console.log('hello')
+    restClient.find('products').then(function(resp) {
+        console.log('products', resp);
+    }).fail(function(err) {
+        console.log(err)
+    });
+</script>

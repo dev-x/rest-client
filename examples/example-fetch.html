@@ -1,0 +1,20 @@
+<script src="index.js"></script>
+<script src="client-fetch.js"></script>
+<script>
+    console.log(makeRequest)
+    restClient.config({
+        baseUrl: 'http://somedomain',
+        headers: {
+            'Accept': 'application/json',
+    //		'Authorization': token ? `Bearer ${token}` : undefined,
+            'Content-Type': 'application/json'
+        },
+        requestMethod: makeRequest
+    });
+    console.log('hello')
+    restClient.find('products').then(function(resp) {
+        console.log(resp);
+    }).catch(function(err) {
+        console.log(err)
+    });
+</script>
