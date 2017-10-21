@@ -22,6 +22,7 @@
         return jQuery.when( jQuery.ajax({
             type: method,
             url: url,
+            headers: headers,
             contentType: 'application/json',
             xhrFields: {
                 withCredentials: true
