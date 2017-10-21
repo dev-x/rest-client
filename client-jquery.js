@@ -19,7 +19,7 @@
     function makeRequest ({url, method, headers, bodyJSObject}) {
         console.log({url, method, headers, bodyJSObject})
         
-        return jQuery.when( jQuery.ajax({
+        return jQuery.ajax({
             type: method,
             url: url,
             headers: headers,
@@ -33,7 +33,7 @@
             },
             error: function (error) {
             }
-        }) );
+        });
         /*
         .done(function(data) {
             console.log('success', data) 
