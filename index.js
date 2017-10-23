@@ -43,12 +43,14 @@
             resObj[ `page[size]` ] = obj.page.size;
           }
         }
+        /*
         if (typeof obj.skip === 'numeric' && typeof obj.limit === 'numeric' && obj.limit > 0){
           resObj[ `page[size]` ] = obj.page.limit;
           resObj[ `page[number]` ] = Math.floor(obj.skip / obj.page.limit) + 1;
         }
+        */
         Object.keys(obj).forEach((attr) => {
-          if (['filter', 'include', 'sort', 'page', 'skip', 'limit'].indexOf(attr) < 0){
+          if (['filter', 'include', 'sort', 'page'/*, 'skip', 'limit'*/].indexOf(attr) < 0){
             resObj[ attr ] = obj[attr].toString();
           }
         });
