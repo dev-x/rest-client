@@ -1,5 +1,5 @@
 "use strict";
-  
+
 (function() {
     function isString(s){
         return typeof s === 'string';
@@ -57,10 +57,16 @@
 
         return objToQueryString(resObj);
     }
-    
+
     var root = this;
-    var previous_mymodule = root.restClient;
-    var isPlainObject = root.isPlainObject;
+    var previous_mymodule;
+    var isPlainObject;
+
+    if (root){
+      previous_mymodule = root.restClient;
+      isPlainObject = root.isPlainObject;
+    }
+
 
     var has_require = typeof require !== 'undefined'
 
@@ -75,7 +81,7 @@
             // throw new Error('mymodule requires underscore, see http://underscorejs.org');
         }
     }
-  
+
     var restClient = {
       headers: {},
       baseUrl: '',
@@ -182,7 +188,7 @@
       },
 
     };
-    
+
     if( typeof exports !== 'undefined' ) {
         if( typeof module !== 'undefined' && module.exports ) {
           exports = module.exports = restClient
