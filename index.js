@@ -106,6 +106,7 @@
 
       request({url, baseUrl, path, query, method, headers, bodyJSObject}){
         let urlFetch = url ? url : (baseUrl ? baseUrl : this.baseUrl) + path;
+        query = (isPlainObject(query)) ? objAPIToQueryString(query) : isString(query) ? query : undefined;
         if (query) {
           urlFetch += '?'+query;
         }
