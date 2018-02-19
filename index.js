@@ -104,13 +104,16 @@
         }
       },
 
-      request({url, baseUrl, path, query, method, headers, bodyJSObject}){
+      request({url, baseUrl, path, query, method, headers = {}, bodyJSObject}){
         let urlFetch = url ? url : (baseUrl ? baseUrl : this.baseUrl) + path;
         query = (isPlainObject(query)) ? objAPIToQueryString(query) : isString(query) ? query : undefined;
         if (query) {
           urlFetch += '?'+query;
         }
-        return this.requestMethod({url: urlFetch, method: method, headers, bodyJSObject});
+        return this.requestMethod({url: urlFetch, 
+          method: method, 
+          headers: Object.assign({}, this.headers, headers), 
+          bodyJSObject});
       },
 
       get(model, idOrPath, query){
