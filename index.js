@@ -51,7 +51,13 @@
         */
         Object.keys(obj).forEach((attr) => {
           if (['filter', 'include', 'sort', 'page'/*, 'skip', 'limit'*/].indexOf(attr) < 0){
-            resObj[ attr ] = obj[attr].toString();
+            if (isPlainObject(obj[ attr ])){
+              Object.keys(obj[ attr ]).forEach((op) => {
+                  resObj[ `${attr}[${op}]` ] = obj[attr][op];
+              });
+            } else {
+              resObj[ attr ] = obj[attr].toString();
+            }
           }
         });
 
@@ -110,9 +116,9 @@
         if (query) {
           urlFetch += '?'+query;
         }
-        return this.requestMethod({url: urlFetch, 
-          method: method, 
-          headers: Object.assign({}, this.headers, headers), 
+        return this.requestMethod({url: urlFetch,
+          method: method,
+          headers: Object.assign({}, this.headers, headers),
           bodyJSObject});
       },
 
